@@ -29,3 +29,42 @@ a{text-decoration:none;color:inherit}
 footer{text-align:center;padding:30px;color:#68788b;font-size:11px;border-top:1px solid #132235}
 @media(max-width:1000px){.navbar{gap:16px}.nav-links{gap:12px}.nav-links a{font-size:11px}.skills-grid{grid-template-columns:repeat(5,1fr)}.hero{grid-template-columns:1fr}.hero-visual{display:none}.about-grid{grid-template-columns:1fr 180px}.about-points{grid-column:1/-1;grid-template-columns:repeat(2,1fr)}.projects-grid{grid-template-columns:1fr}.contact{grid-template-columns:1fr}.contact-links{justify-content:flex-start}}
 @media(max-width:650px){.navbar{margin:7px 10px;padding:11px 14px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:58px;left:0;right:0;background:#07101a;border:1px solid var(--border);border-radius:10px;padding:14px;flex-direction:column}.nav-links.open{display:flex}.resume-btn{display:none}.section{padding:38px 16px}.hero{min-height:auto;padding-top:50px;padding-bottom:42px}.hero h1{font-size:37px}.hero h2{font-size:19px}.hero-text{font-size:14px}.hero-actions{gap:10px}.btn{padding:11px 13px}.info-cards,.about-grid{grid-template-columns:1fr}.about-photo{max-width:260px;height:300px;justify-self:start}.about-points{grid-template-columns:1fr}.skills-grid{grid-template-columns:repeat(2,1fr)}.two-column{grid-template-columns:1fr;padding:0 16px 10px}.cert-grid{grid-template-columns:1fr 1fr}.contact{padding:25px 16px}.section-title-row{align-items:flex-start}.section-title-row h2{font-size:22px}.experience-item{gap:12px}}
+
+/* Entire project cards are clickable, not just the arrow. */
+.project-card-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.project-card-link:hover {
+  transform: translateY(-5px);
+  border-color: #3479ad;
+  box-shadow: 0 12px 30px #0004;
+}
+.project-content {
+  min-width: 0;
+  display: block;
+}
+.project-heading {
+  display: block;
+  font-size: 14px;
+  line-height: 1.35;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.project-description {
+  display: block;
+  font-size: 11px;
+  color: #9baabd;
+}
+.project-card-link:focus-visible {
+  outline: 2px solid #54b0ff;
+  outline-offset: 4px;
+}
+.project-card-link .tags {
+  display: flex;
+}
+.project-card-link .arrow {
+  display: grid;
+  place-items: center;
+}
