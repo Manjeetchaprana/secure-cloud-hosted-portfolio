@@ -1,89 +1,107 @@
-# Secure Cloud-Hosted Portfolio on AWS
+# Secure Cloud-Hosted Portfolio
 
-A responsive personal portfolio built using HTML, CSS, and JavaScript, with AWS cloud services for hosting and content delivery.
+A responsive personal portfolio website built using HTML, CSS, and JavaScript, and deployed using **Amazon S3 Static Website Hosting**.
 
-## Overview
+The project demonstrates practical cloud computing concepts, static website deployment, object storage, and public access configuration on AWS.
 
-This project demonstrates how to build a static website and deploy it using Amazon Web Services (AWS). It showcases front-end development, cloud hosting concepts, and secure content delivery.
+## Live Website
 
-## Technologies Used
+[View My Portfolio](http://portfolio-site-personal.s3-website-ap-southeast-2.amazonaws.com/)
 
-- **HTML5** — Website structure
-- **CSS3** — Responsive styling and layout
-- **JavaScript** — Interactive functionality
-- **Amazon S3** — Static website file storage and hosting origin
-- **Amazon CloudFront** — Content delivery and HTTPS support
+## Project Overview
 
-## Features
+This project hosts a personal portfolio website on Amazon S3 without requiring a traditional web server such as EC2 or Nginx.
 
-- Responsive personal portfolio
-- Projects and technical skills showcase
-- Downloadable resume
-- Contact and professional profile links
-- Cloud-based website hosting
-- Content delivery through CloudFront, when configured
+The website files are stored in an S3 bucket, and S3 Static Website Hosting serves the website to visitors through its website endpoint.
 
 ## Architecture
 
 ```text
-Visitor
-   |
-   v
-Amazon CloudFront
-   |
-   v
-Amazon S3
-   |
-   v
-HTML, CSS, JavaScript and Images
+             Website Visitor
+                    |
+                    v
+          Amazon S3 Website Endpoint
+                    |
+                    v
+          S3 Static Website Hosting
+                    |
+                    v
+          portfolio-site-personal
+                    |
+          -----------------------
+          |          |          |
+       HTML/CSS     JavaScript  Assets
+                              (Photo, Resume)
 ```
 
-CloudFront serves website content from the S3 origin. For a secure deployment, configure a CloudFront Origin Access Control (OAC) and keep the S3 bucket private.
+## AWS Services Used
+
+| Service | Purpose |
+|---|---|
+| Amazon S3 | Stores website files |
+| S3 Static Website Hosting | Serves the static website |
+| S3 Bucket Policy | Allows public read access to website objects |
+
+**AWS Region:** Asia Pacific (Sydney) — `ap-southeast-2`
+
+## Technologies Used
+
+- HTML5
+- CSS3
+- JavaScript
+- Amazon Web Services (AWS)
+- Amazon S3
 
 ## Project Structure
 
 ```text
 secure-cloud-hosted-portfolio/
+│
 ├── index.html
 ├── style.css
 ├── script.js
-├── manjeet.jpg.png
+├── photo.jpeg
 ├── resume.pdf
 └── README.md
 ```
 
 ## Deployment Steps
 
-1. Create an Amazon S3 bucket.
-2. Upload the website files to the bucket.
-3. Configure Amazon CloudFront with the S3 bucket as its origin.
-4. Configure Origin Access Control (OAC) to restrict direct access to the S3 origin.
-5. Configure CloudFront HTTPS and test the website.
-6. Update the distribution whenever website content changes.
+1. Create an S3 bucket in AWS.
+2. Upload the website files to the bucket root.
+3. Enable Static Website Hosting.
+4. Set `index.html` as the index document.
+5. Configure the bucket's public access settings.
+6. Add an S3 bucket policy allowing `s3:GetObject`.
+7. Access the website through the S3 website endpoint.
 
 ## Security Considerations
 
-- Keep AWS credentials and access keys out of the repository.
-- Prefer a private S3 bucket with CloudFront OAC.
-- Use HTTPS through CloudFront.
-- Apply least-privilege IAM permissions.
-- Never commit API keys, passwords, or other secrets.
+- Public read access is enabled so visitors can access the portfolio.
+- The bucket policy grants object read permissions, not write permissions.
+- No AWS access keys or secret credentials are stored in the repository.
+- Only intended public website assets should be stored in this public bucket.
 
-## What I Learned
+**Note:** The S3 static website endpoint supports HTTP. HTTPS requires an additional service such as Amazon CloudFront.
 
-- Structuring and deploying a static website
-- Understanding Amazon S3 and CloudFront
-- Understanding cloud content delivery and HTTPS
-- Applying basic cloud security principles
-- Managing project files with Git and GitHub
+## Key Learning Outcomes
+
+Through this project, I gained practical experience with:
+
+- Deploying static websites using Amazon S3.
+- Configuring S3 Static Website Hosting.
+- Understanding bucket policies and IAM-based access control concepts.
+- Managing public access to cloud-hosted resources.
+- Understanding the difference between server-based hosting and serverless static website hosting.
+- Working with AWS infrastructure through the AWS Management Console.
 
 ## Author
 
-**Manjeet Singh Chaprana**
+**Manjeet Chaprana**
 
 - GitHub: [Manjeetchaprana](https://github.com/Manjeetchaprana)
-- LinkedIn: [Manjeet Chaprana](https://www.linkedin.com/in/manjeet-chaprana-651470256/)
+- LinkedIn: [Connect with me](https://www.linkedin.com/in/manjeet-chaprana-651470256/)
 
 ---
 
-*This project is intended as a practical demonstration of static website hosting and AWS cloud fundamentals.*
+*This project is part of my hands-on learning journey in Cloud Computing and Cybersecurity.*
