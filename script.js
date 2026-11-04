@@ -1,123 +1,39 @@
-
-/* =====================================
-   MANJEET'S PORTFOLIO JAVASCRIPT
-   ===================================== */
-
-
-/* 1. MOBILE NAVIGATION */
-
+/* Manjeet Chaprana | SOC Analyst Portfolio */
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
+const navigationLinks = document.querySelectorAll(".nav-links a");
 
 if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", function () {
-        const isOpen = navLinks.classList.toggle("open");
-
-        menuToggle.setAttribute(
-            "aria-expanded",
-            String(isOpen)
-        );
-    });
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
 }
 
-
-/* 2. CLOSE MOBILE MENU AFTER CLICKING A LINK */
-
-const navigationLinks = document.querySelectorAll(
-    ".nav-links a"
-);
-
-navigationLinks.forEach(function (link) {
-    link.addEventListener("click", function () {
-        if (navLinks) {
-            navLinks.classList.remove("open");
-        }
-
-        if (menuToggle) {
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-        }
-    });
+navigationLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinks?.classList.remove("open");
+    menuToggle?.setAttribute("aria-expanded", "false");
+  });
 });
 
-
-/* 3. HIGHLIGHT ACTIVE NAVIGATION SECTION */
-
-const sections = document.querySelectorAll(
-    "main section[id]"
-);
-
+const sections = document.querySelectorAll("main section[id]");
 function updateActiveNavigation() {
-    let currentSection = "home";
-
-    sections.forEach(function (section) {
-        if (window.scrollY >= section.offsetTop - 180) {
-            currentSection = section.id;
-        }
-    });
-
-    navigationLinks.forEach(function (link) {
-        const isActive =
-            link.getAttribute("href") === "#" + currentSection;
-
-        link.classList.toggle("active", isActive);
-    });
+  let currentSection = "home";
+  sections.forEach((section) => {
+    if (window.scrollY >= section.offsetTop - 170) {
+      currentSection = section.id;
+    }
+  });
+  navigationLinks.forEach((link) => {
+    const active = link.getAttribute("href") === `#${currentSection}`;
+    link.classList.toggle("active", active);
+    if (active) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
 }
-
-window.addEventListener(
-    "scroll",
-    updateActiveNavigation,
-    { passive: true }
-);
-
-updateActiveNavigation();
-
-
-/* 4. AUTOMATICALLY UPDATE COPYRIGHT YEAR */
+window.addEventListener("scroll", updateActiveNavigation, { passive: true });
+window.addEventListener("load", updateActiveNavigation);
 
 const yearElement = document.getElementById("year");
-
-if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-}
-
-
-/* 5. PROJECT CARD HOVER ANIMATION */
-
-const projectCards = document.querySelectorAll(
-    ".project-card"
-);
-
-projectCards.forEach(function (card) {
-    card.addEventListener("mouseenter", function () {
-        card.style.transform = "translateY(-5px)";
-    });
-
-    card.addEventListener("mouseleave", function () {
-        card.style.transform = "translateY(0)";
-    });
-});
-
-
-/* 6. SKILL CARD HOVER ANIMATION */
-
-const skillCards = document.querySelectorAll(".skill");
-
-skillCards.forEach(function (skill) {
-    skill.addEventListener("mouseenter", function () {
-        skill.style.transform = "translateY(-4px)";
-    });
-
-    skill.addEventListener("mouseleave", function () {
-        skill.style.transform = "translateY(0)";
-    });
-});
-
-
-/* 7. CONFIRM JAVASCRIPT IS RUNNING */
-
-console.log(
-    "Manjeet's portfolio loaded successfully!"
-);
+if (yearElement) yearElement.textContent = new Date().getFullYear();
